@@ -1,0 +1,37 @@
+plugins {
+    id("io.gatling.gradle") version("3.9.5.1") apply(false)
+}
+
+apply from: "${rootDir}/gradle/scripts/jdk.gradle"
+apply from: "${rootDir}/gradle/scripts/jdk17.gradle"
+apply plugin: "io.gatling.gradle"
+
+def lombokVersion = "1.18.28"
+def generatedResourcesDir = "${projectDir}/src/gatling/resources/generated"
+
+dependencies {
+    gatlingCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    gatlingAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+gatling {
+    jvmArgs = ['-server', '-Xms1g', '-Xmx1g', '-DlogLevel=WARN', '-DlogHttp=OFF']
+}
+
+clean {
+    doFirst {
+        delete generatedResourcesDir
+    }
+}
+
+task aggregateTestData(type: Copy) {
+    into generatedResourcesDir
+
+    from ("${parent.projectDir}/eff/generated/queries.csv") {
+        rename "queries.csv", "eff/queries.csv"
+    }
+}
+
+processGatlingResources {
+    dependsOn(":${project.path}:aggregateTestData")
+}
