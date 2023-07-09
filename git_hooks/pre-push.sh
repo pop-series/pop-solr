@@ -14,7 +14,7 @@ validate() {
 
 echo "executing pre-push checks"
 init
-#validate
+validate
 echo -e "\nTotal [$VALIDATION_FAILURES] validation failures were observed"
 if [[ "$VALIDATION_FAILURES" -ne "0" ]]; then
   echo -e "❌ please rectify failures before proceeding ahead\n"
