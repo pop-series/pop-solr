@@ -17,5 +17,6 @@
 **/lib
 **/logs
 **/out
-solr-[0-9.]*/
+**/solr-[0-9.]*/
 **/tmp
+**/venv

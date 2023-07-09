@@ -1,0 +1,41 @@
+apply plugin: "java-library"
+apply plugin: "com.diffplug.spotless"
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junit5Version = "5.9.1"
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter:${project.junit5Version}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+spotless {
+    java {
+        target "src/*/java/**/*.java"
+
+        googleJavaFormat()
+
+        importOrder()
+        removeUnusedImports()
+    }
+}
+
+task jdkCheck {
+    dependsOn("${project.path}:spotlessJavaCheck")
+}
+
+task jdkFormat {
+    dependsOn("${project.path}:spotlessJavaApply")
+}
+
+check {
+    dependsOn("${project.path}:jdkCheck")
+}
