@@ -1,0 +1,29 @@
+version: "3.5"
+services:
+  pop-solr:
+    container_name: pop-solr
+    hostname: pop-solr
+    networks:
+      pop-series:
+        ipv4_address: 175.0.0.20
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+    ports:
+      - "8983:8983"
+      - "9983:9983"
+      - "58983:58983"
+    volumes:
+      - pop-solr-vol:/var/solr
+volumes:
+  pop-solr-vol:
+    name: pop-solr-vol
+networks:
+  pop-series:
+    name: pop-series
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 175.0.0.0/24
+          gateway: 175.0.0.1
