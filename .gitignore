@@ -9,10 +9,9 @@
 **/archive-reports
 **/bin
 **/build
-**/data/generated
-**/docs/generated
 **/ext-libs
 **/ext-scripts
+**/generated
 **/include
 **/lib
 **/logs

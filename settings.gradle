@@ -1,3 +1,6 @@
 rootProject.name = "pop-solr"
 
 include "deploy"
+include "practical-recipes"
+include "practical-recipes:benchmark"
+include "practical-recipes:eff"
