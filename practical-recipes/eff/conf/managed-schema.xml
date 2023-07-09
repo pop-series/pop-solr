@@ -49,13 +49,7 @@
 
     <copyField source="author" dest="author_s"/>
 
-    <!-- field type definitions. The "name" attribute is
-       just a label to be used by field definitions.  The "class"
-       attribute and any other attributes determine the real
-       behavior of the fieldType.
-         Class names starting with "solr" refer to java classes in a
-       standard package such as org.apache.solr.analysis
-    -->
+    <!-- field type definitions -->
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
     <fieldType name="strings" class="solr.StrField" sortMissingLast="true" multiValued="true" docValues="true" />
 
