@@ -1,0 +1,16 @@
+apply from: "${rootDir}/gradle/scripts/jdk.gradle"
+apply from: "${rootDir}/gradle/scripts/jdk17.gradle"
+
+def lombokVersion = "1.18.28"
+def solrVersion = "9.2.1"
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    compileOnly "org.apache.solr:solr-core:${solrVersion}"
+}
+
+task prepareExtLibs {
+    dependsOn(":${projectPath}:jar")
+}

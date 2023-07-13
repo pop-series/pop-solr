@@ -5,6 +5,9 @@
 -->
 <config>
   <luceneMatchVersion>9.4</luceneMatchVersion>
+
+  <lib dir="${solr.ext.libs.dir:/opt/solr/ext-libs}/" regex=".*\.jar" />
+
   <dataDir>${solr.data.dir:}</dataDir>
   <directoryFactory name="DirectoryFactory"
                     class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}"/>
@@ -92,6 +95,12 @@
       <str name="echoParams">explicit</str>
       <str name="wt">json</str>
       <str name="indent">true</str>
+    </lst>
+  </requestHandler>
+
+  <requestHandler name="/manage/eff" class="io.pop.solr.recipes.eff.ManageEffRequestHandler" startup="lazy">
+    <lst name="invariants">
+      <str name="downloadLocation">https://raw.githubusercontent.com/pop-series/pop-solr/main/practical-recipes/eff/sample</str>
     </lst>
   </requestHandler>
 

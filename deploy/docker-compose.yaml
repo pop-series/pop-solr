@@ -6,6 +6,8 @@ services:
       - "-c"
       - "-a"
       - "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:58983"
+      - "-Dsolr.ext.libs.dir=/opt/solr/ext-libs"
+      - "-Denable.packages=true"
     restart: always
     healthcheck:
       test: lsof -n -i :6627

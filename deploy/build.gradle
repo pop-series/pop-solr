@@ -1,1 +1,20 @@
 version = "0.0.1"
+
+def extLibsDirPath = "${buildDir}/libs"
+
+task clean {
+    doFirst {
+        delete extLibsDirPath
+    }
+}
+
+task aggregateExtLibs(type: Copy) {
+    into extLibsDirPath
+
+    from "${rootDir}/practical-recipes/eff/build/libs"
+    dependsOn(":practical-recipes:eff:prepareExtLibs")
+}
+
+task build {
+    dependsOn(":${project.path}:aggregateExtLibs")
+}

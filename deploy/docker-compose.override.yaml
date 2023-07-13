@@ -6,6 +6,8 @@ services:
     networks:
       pop-series:
         ipv4_address: 175.0.0.20
+    environment:
+      SOLR_REQUESTLOG_ENABLED: "true"
     deploy:
       resources:
         limits:
@@ -16,6 +18,7 @@ services:
       - "58983:58983"
     volumes:
       - pop-solr-vol:/var/solr
+      - ./build/libs:/opt/solr/ext-libs:ro
 volumes:
   pop-solr-vol:
     name: pop-solr-vol

@@ -134,6 +134,9 @@ install() {
 
 setup
 
-# usage ./control.sh <function-name> <sub-function-name> to execute the relevant function
+# modular script to run various tasks for the example collection setup
+# for starting from scratch invoke as: `./control.sh install`
+# for executing specific goals (encapsualated as functions), invoke as:
+# `./control.sh <function-name>` or `./control.sh <function-name> <sub-function-name>`
 # e.g.
 ${@}
